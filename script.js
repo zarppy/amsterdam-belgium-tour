@@ -9,14 +9,14 @@ const itineraryData = [
                 title: "Arrival & Transfer to Jordaan",
                 description: "Arrive mid‑afternoon at Schiphol. For comfort and ease with luggage, take a direct taxi to your hotel in Jordaan (approx €55–65, ~15 mins). Check in to Hotel Mercier, Hotel Hegra, or similar.",
                 tags: ["Transport", "Hotel"],
-                image: "https://images.unsplash.com/photo-1582239566133-c59800a2fbd0?auto=format&fit=crop&w=800&q=80",
+                image: "./images/jordaan.jpeg", /* Add jordaan.jpeg to the images folder */
                 route: "Schiphol Airport → Jordaan"
             },
             {
                 title: "Amsterdam Core Walk & Snacks",
                 description: "Take a tram or taxi to Centraal Station. Walk down the busy Damrak, grab some Dutch fries at Fabel Friet. Continue to Dam Square for photos, get a stroopwafel at Firma Stroop on Kalverstraat. Loop through the Red Light District, then head towards Spui for cookies at Van Stapele Koekmakerij before returning to Jordaan.",
                 tags: ["Attraction", "Food"],
-                image: "https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?auto=format&fit=crop&w=800&q=80",
+                image: "./images/amsterdam-core.jpeg", /* Add amsterdam-core.jpeg to the images folder */
                 route: "Centraal → Damrak → Dam Square → RLD → Spui → Jordaan"
             },
             {
@@ -45,7 +45,7 @@ const itineraryData = [
                 title: "Bloemenmarkt & De Pijp",
                 description: "Walk or tram to the Bloemenmarkt (floating flower market). Then head south to De Pijp to explore the Albert Cuyp Market for street food and casual bites.",
                 tags: ["Attraction", "Food"],
-                image: "https://images.unsplash.com/photo-1588636250702-8a9d150650ed?auto=format&fit=crop&w=800&q=80",
+                image: "./images/bloemenmarkt.jpeg", /* Add bloemenmarkt.jpeg to the images folder */
                 route: "Singel Canal → De Pijp"
             },
             {
@@ -67,7 +67,7 @@ const itineraryData = [
                 title: "Vollenhove & Giethoorn",
                 description: "Rent a car in Amsterdam. Drive 1.5 hrs to Vollenhove for a coffee/photo stop. Continue to Giethoorn (the 'Venice of the North') to rent a small electric boat and explore footpaths for ~4 hours.",
                 tags: ["Transport", "Attraction"],
-                image: "https://images.unsplash.com/photo-1601639019253-3b1df051a3a4?auto=format&fit=crop&w=800&q=80",
+                image: "./images/giethoorn.jpeg", /* Add giethoorn.jpeg to the images folder */
                 route: "Amsterdam (Car Pick-up) → Vollenhove → Giethoorn"
             },
             {
@@ -89,7 +89,7 @@ const itineraryData = [
                 title: "Utrecht Stopover",
                 description: "Drive ~1 hr from Zwolle to Utrecht. Wander the unique split-level wharf cellars, the historic Dom Tower, and medieval core for a couple of hours and grab lunch.",
                 tags: ["Attraction", "Food"],
-                image: "https://images.unsplash.com/photo-1562919864-4e427edcbe23?auto=format&fit=crop&w=800&q=80",
+                image: "./images/utrecht.jpeg", /* Add utrecht.jpeg to the images folder */
                 route: "Zwolle → Utrecht (1 hr)"
             },
             {
@@ -111,14 +111,14 @@ const itineraryData = [
                 title: "Rotterdam Highlights",
                 description: "Start at Rotterdam Centraal, walk the Lijnbaan to Markthal for lunch. Visit the Cube Houses and Oude Haven. Head to the Erasmus Bridge for photos.",
                 tags: ["Attraction", "Food"],
-                image: "https://images.unsplash.com/photo-1598007255269-eecfc1b4c30c?auto=format&fit=crop&w=800&q=80",
+                image: "./images/rotterdam-1.jpeg", /* Add rotterdam-1.jpeg to the images folder */
                 route: "Centraal → Markthal → Cube Houses → Erasmus Bridge"
             },
             {
                 title: "Return Car & Train to Schiphol",
                 description: "Return rental car in Rotterdam (saves extra days rental/parking). Take a direct train (40-60 mins) to Amsterdam/Schiphol and stay near the airport ahead of your Copenhagen flight.",
                 tags: ["Transport", "Hotel"],
-                image: "https://images.unsplash.com/photo-1555581692-0b81e8bba143?auto=format&fit=crop&w=800&q=80",
+                image: "./images/rotterdam-2.jpeg", /* Add rotterdam-2.jpeg to the images folder */
                 route: "Rotterdam → Train → Schiphol"
             }
         ]
@@ -140,7 +140,7 @@ const itineraryData = [
                 title: "Afternoon in Nyhavn",
                 description: "Take a gentle walk along the colorful Nyhavn harbor, cross the bridges for different viewing angles, and explore the nearby waterfront and streets.",
                 tags: ["Attraction"],
-                image: "https://images.unsplash.com/photo-1513622470522-26c314a85ce8?auto=format&fit=crop&w=800&q=80",
+                image: "./images/nyhavn.jpeg", /* Add nyhavn.jpeg to the images folder */
                 route: "Nyhavn Harbor"
             }
         ]
@@ -155,14 +155,14 @@ const itineraryData = [
                 title: "Canal Tour & Strøget",
                 description: "Morning canal tour from Nyhavn to see the Opera House and Christianshavn. Midday: walk via Amalienborg Palace square towards Strøget for lunch in a side-street café.",
                 tags: ["Attraction", "Food"],
-                image: "https://images.unsplash.com/photo-1502409740158-756d11fdf1af?auto=format&fit=crop&w=800&q=80",
+                image: "./images/copenhagen-canals.jpeg", /* Add copenhagen-canals.jpeg to the images folder */
                 route: "Nyhavn → Canals → Amalienborg → Strøget"
             },
             {
                 title: "Rosenborg Castle",
                 description: "Afternoon visit to Rosenborg Castle and Kongens Have (King's Garden). Look for dinner options in the Indre By and Nyhavn side streets featuring Nordic-inspired menus.",
                 tags: ["Attraction", "Food"],
-                image: "https://images.unsplash.com/photo-1563297050-48e025f17183?auto=format&fit=crop&w=800&q=80",
+                image: "./images/rosenborg.jpeg", /* Add rosenborg.jpeg to the images folder */
                 route: null
             }
         ]
@@ -177,14 +177,14 @@ const itineraryData = [
                 title: "Tivoli Gardens",
                 description: "City Hall Square and Tivoli Gardens in the morning. Enjoy the gardens, gentle rides, and vibrant atmosphere. Grab lunch at Tivoli Food Hall or nearby spots.",
                 tags: ["Attraction", "Food"],
-                image: "https://images.unsplash.com/photo-1629807572704-586dfafbbcb5?auto=format&fit=crop&w=800&q=80",
+                image: "./images/tivoli.jpeg", /* Add tivoli.jpeg to the images folder */
                 route: "City Hall Square → Tivoli"
             },
             {
                 title: "Explore Vesterbro / Nørrebro",
                 description: "Spend your evening exploring these neighborhoods packed with food—from New Nordic and Michelin-level to street-food and global cuisines.",
                 tags: ["Food"],
-                image: "https://images.unsplash.com/photo-1541094380735-a13088b90c37?auto=format&fit=crop&w=800&q=80",
+                image: "./images/vesterbro.jpeg", /* Add vesterbro.jpeg to the images folder */
                 route: null
             }
         ]
@@ -206,7 +206,7 @@ const itineraryData = [
                 title: "Roskilde Visit & Overnight",
                 description: "Drive to Roskilde to explore its Cathedral and Viking Ship Museum. Enjoy a distinct historical and maritime feel. Stay overnight in Roskilde or a nearby coastal base.",
                 tags: ["Attraction", "Hotel"],
-                image: "https://images.unsplash.com/photo-1585148003463-22dcda307dc2?auto=format&fit=crop&w=800&q=80",
+                image: "./images/roskilde.jpeg", /* Add roskilde.jpeg to the images folder */
                 route: "Dragør → Roskilde"
             }
         ]
@@ -221,7 +221,7 @@ const itineraryData = [
                 title: "Scenic Coastal Drive",
                 description: "Spend the morning around Roskilde, then take a scenic drive back towards Copenhagen via smaller coastal towns along the Øresund.",
                 tags: ["Attraction", "Transport"],
-                image: "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=800&q=80",
+                image: "./images/coastal-drive.jpeg", /* Add coastal-drive.jpeg to the images folder */
                 route: "Roskilde → Coastal Towns → Copenhagen"
             },
             {
@@ -305,7 +305,7 @@ function renderAllDays() {
                         ${routeHtml}
                     </div>
                     <div class="img-wrapper">
-                        <img src="${item.image}" alt="${item.title}" class="itinerary-img" loading="lazy">
+                        <img src="${item.image}" alt="${item.title}" class="itinerary-img" loading="lazy" onerror="this.style.opacity='0'">
                     </div>
                 </div>
             `;
