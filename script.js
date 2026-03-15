@@ -1,5 +1,49 @@
 const itineraryData = [
     {
+        type: "guide",
+        day: "Info-AMS",
+        title: "Amsterdam Essentials",
+        description: "Your quick-access guide to the best bites and sights in the Venice of the North.",
+        heroImage: "https://images.unsplash.com/photo-1512470876302-972faa2aa9a4?auto=format&fit=crop&w=1600&q=80",
+        categories: [
+            {
+                name: "Places of Interest",
+                icon: "🏛️",
+                items: [
+                    { title: "Van Gogh Museum", desc: "World-famous collection of the Dutch master", mustVisit: true },
+                    { title: "Rijksmuseum", desc: "The national museum of the Netherlands", mustVisit: true },
+                    { title: "Damrak", desc: "The iconic primary route into the city", mustVisit: true },
+                    { title: "Vondelpark", desc: "Expansive and beautiful urban park", mustVisit: false }
+                ]
+            },
+            {
+                name: "Restaurants",
+                icon: "🍕",
+                items: [
+                    { title: "nNea Pizza", desc: "Exceptional Margherita and authentic vibes", mustVisit: true },
+                    { title: "Harry's Amsterdam", desc: "Cozy spot famous for incredible pasta", mustVisit: true },
+                    { title: "Gifu Ramen", desc: "Best local spot for a warm bowl of ramen", mustVisit: false },
+                    { title: "Lombardo's", desc: "Premium gourmet hamburgers", mustVisit: false }
+                ]
+            },
+            {
+                name: "Cafes & Quick Bites",
+                icon: "🧇",
+                items: [
+                    { title: "Locals", desc: "Chic brunch spot - try the Burrata", mustVisit: true },
+                    { title: "Van Stapele", desc: "Legendary Amsterdam chocolate cookies", mustVisit: true },
+                    { title: "Fabel Friet", desc: "Famous Dutch fries with signature sauces", mustVisit: true },
+                    { title: "Firma Stroop", desc: "Fresh, warm artisanal stroopwafels", mustVisit: true },
+                    { title: "Lera Cafe", desc: "Minimalist matcha and coffee studio", mustVisit: false },
+                    { title: "Rembrandt Corner", desc: "Classic cafe at a historic intersection", mustVisit: false },
+                    { title: "Pancakes Amsterdam", desc: "Modern take on traditional Dutch pancakes", mustVisit: false },
+                    { title: "Febo", desc: "The iconic Dutch 'food from the wall' experience", mustVisit: false },
+                    { title: "Albert Heijn", desc: "Local supermarket - best place for cheap water/snacks", mustVisit: false }
+                ]
+            }
+        ]
+    },
+    {
         day: 1,
         title: "Arrive Schiphol → Jordaan & Core Walk",
         description: "Arrive in Amsterdam, settle into the charming Jordaan district, and take an efficient walking loop through the historic center.",
@@ -96,7 +140,7 @@ const itineraryData = [
                 title: "Arrival in Rotterdam",
                 description: "Continue the drive to Rotterdam (40-50 mins). Check into accommodation near the center/river to easily walk to main sites the next day.",
                 tags: ["Transport", "Hotel"],
-                image: "https://images.unsplash.com/photo-1555581692-0b81e8bba143?auto=format&fit=crop&w=800&q=80",
+                image: "./images/markthal-rotterdam.jpeg", /* Add market Rotterdam.jpeg to the images folder */
                 route: "Utrecht → Rotterdam"
             }
         ]
@@ -316,7 +360,7 @@ itineraryData.forEach(dayInfo => {
     const btn = document.createElement('button');
     btn.className = 'day-btn';
     btn.innerHTML = `
-        <span class="day-label">${dayInfo.day === 'Guide' ? 'Info' : 'Day ' + dayInfo.day}</span>
+        <span class="day-label">${dayInfo.type === 'guide' ? 'Info' : 'Day ' + dayInfo.day}</span>
         <span class="date-label">${dayInfo.title.split('→')[0].substring(0, 15)}${dayInfo.title.length > 15 ? '...' : ''}</span>
     `;
     btn.onclick = () => {
@@ -426,8 +470,9 @@ window.addEventListener('scroll', () => {
 
     document.querySelectorAll('.day-btn').forEach(btn => {
         btn.classList.remove('active');
-        const label = dayInfo.day === 'Guide' ? 'Info' : `Day ${dayInfo.day}`;
-        if (btn.innerHTML.includes(label)) {
+        const isGuide = dayInfo.type === 'guide';
+        const label = isGuide ? 'Info' : `Day ${dayInfo.day}`;
+        if (btn.innerText.includes(label) && btn.innerText.includes(dayInfo.title.split('→')[0].substring(0, 10))) {
             btn.classList.add('active');
         }
     });
