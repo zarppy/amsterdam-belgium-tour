@@ -1,0 +1,262 @@
+[
+    {
+        "name": "Riverdale Residence Shanghai Xintiandi",
+        "name_cn": "长河国际公寓·新天地",
+        "address": "No.98 Shouning Road, Huangpu District",
+        "address_cn": "上海黄浦区寿宁路98号",
+        "type": "hotel",
+        "day": 0,
+        "lat": 31.22403,
+        "lng": 121.48085
+    },
+    {
+        "name": "Xingguang Photographic Equipment City",
+        "name_cn": "星光摄影器材城",
+        "address": "288 Luban Road",
+        "address_cn": "上海市黄浦区鲁班路288号",
+        "type": "shop",
+        "day": 1,
+        "lat": 31.2158,
+        "lng": 121.4803
+    },
+    {
+        "name": "Ah Ma Handmade",
+        "name_cn": "阿嬷手作",
+        "address": "Xintiandi",
+        "address_cn": "上海市新天地6号楼",
+        "type": "restaurant",
+        "day": 1,
+        "lat": 31.2198,
+        "lng": 121.4751
+    },
+    {
+        "name": "Tao Tao Ju",
+        "name_cn": "陶陶居",
+        "address": "Unit 01C-1, 181 Taicang Road, Xintiandi",
+        "address_cn": "上海市黄浦区太仓路181号新天地01C-1单元",
+        "type": "restaurant",
+        "day": 1,
+        "lat": 31.2199,
+        "lng": 121.4727
+    },
+    {
+        "name": "Pane Shoe Store",
+        "name_cn": "Pane鞋店",
+        "address": "22 Yongyuan Road",
+        "address_cn": "上海市静安区永源路22号",
+        "type": "shop",
+        "day": 1,
+        "lat": 31.2252,
+        "lng": 121.4490
+    },
+    {
+        "name": "Yuyuan Garden",
+        "name_cn": "豫园",
+        "address": "Old City",
+        "address_cn": "上海市黄浦区老城厢",
+        "type": "attraction",
+        "day": 3,
+        "lat": 31.2277,
+        "lng": 121.4920
+    },
+    {
+        "name": "City God Temple (Chen Wang Miao)",
+        "name_cn": "城隍庙",
+        "address": "249 Middle Fangbang Road",
+        "address_cn": "上海市黄浦区福佑路249号",
+        "type": "attraction",
+        "day": 3,
+        "lat": 31.2278,
+        "lng": 121.4914
+    },
+    {
+        "name": "Haoke Yan BBQ Buffet",
+        "name_cn": "蚝客宴三文鱼生蚝自助",
+        "address": "4F Building B, No.1 Department Store, People's Square",
+        "address_cn": "黄浦区人民广场第一百货B馆4F",
+        "type": "restaurant",
+        "day": 3,
+        "lat": 31.2309,
+        "lng": 121.4729
+    },
+    {
+        "name": "Supreme Crab",
+        "name_cn": "蟹之尊",
+        "address": "B2 New World Daimaru, Nanjing East Road",
+        "address_cn": "南京东路新世界大丸百货B2",
+        "type": "restaurant",
+        "day": 3,
+        "lat": 31.2388,
+        "lng": 121.4815
+    },
+    {
+        "name": "Luneurs Cafe",
+        "name_cn": "Luneurs咖啡",
+        "address": "133 Yuanmingyuan Road",
+        "address_cn": "上海市圆明园路133号",
+        "type": "restaurant",
+        "day": 3,
+        "lat": 31.2425,
+        "lng": 121.4908
+    },
+    {
+        "name": "Hongkou Gang Photo Spot",
+        "name_cn": "虹口港崩闸",
+        "address": "Changzhi Road & Jiulong Road intersection",
+        "address_cn": "长治路九龙路交叉口",
+        "type": "attraction",
+        "day": 3,
+        "lat": 31.2545,
+        "lng": 121.5012
+    },
+    {
+        "name": "Gao Lao Jiu Hotpot",
+        "name_cn": "高老九火锅",
+        "address": "399 Jiujiang Road",
+        "address_cn": "上海市九江路399号",
+        "type": "restaurant",
+        "day": 3,
+        "lat": 31.2346,
+        "lng": 121.4795
+    },
+    {
+        "name": "Long Time Ago",
+        "name_cn": "很久以前羊肉串",
+        "address": "830 Nanjing East Road",
+        "address_cn": "上海市南京东路830号",
+        "type": "restaurant",
+        "day": 3,
+        "lat": 31.2354,
+        "lng": 121.4812
+    },
+    {
+        "name": "Humble Administrator's Garden",
+        "name_cn": "拙政园",
+        "address": "Suzhou",
+        "address_cn": "江苏省苏州市",
+        "type": "attraction",
+        "day": 4,
+        "lat": 31.3238,
+        "lng": 120.6299
+    },
+    {
+        "name": "Hunglou Gelato",
+        "name_cn": "红楼雪糕",
+        "address": "Bicester Village Suzhou",
+        "address_cn": "苏州市比斯特购物村",
+        "type": "restaurant",
+        "day": 4,
+        "lat": 31.3812,
+        "lng": 120.7256
+    },
+    {
+        "name": "Wukang Mansion",
+        "name_cn": "武康大楼",
+        "address": "Huaihai Middle Road",
+        "address_cn": "上海市淮海中路1850号",
+        "type": "attraction",
+        "day": 5,
+        "lat": 31.2098,
+        "lng": 121.4373
+    },
+    {
+        "name": "Anfu Road",
+        "name_cn": "安福路",
+        "address": "Anfu Road, Xuhui District",
+        "address_cn": "上海市徐汇区安福路",
+        "type": "attraction",
+        "day": 5,
+        "lat": 31.21512,
+        "lng": 121.44764
+    },
+    {
+        "name": "Gathering Cafe",
+        "name_cn": "Gathering咖啡",
+        "address": "137 Wukang Road",
+        "address_cn": "上海市武康路137号",
+        "type": "restaurant",
+        "day": 5,
+        "lat": 31.2092,
+        "lng": 121.4368
+    },
+    {
+        "name": "13DE MARZO Cafe",
+        "name_cn": "13DE MARZO咖啡",
+        "address": "322 Anfu Road",
+        "address_cn": "上海市安福路322号",
+        "type": "restaurant",
+        "day": 5,
+        "lat": 31.2089,
+        "lng": 121.4345
+    },
+    {
+        "name": "New Sukiyaki (Huaihai Road)",
+        "name_cn": "牛New寿喜烧(淮海店)",
+        "address": "3F Huahai 755, Huaihai Middle Road",
+        "address_cn": "上海市淮海中路755号3楼",
+        "type": "restaurant",
+        "day": 5,
+        "lat": 31.2225,
+        "lng": 121.4600
+    },
+    {
+        "name": "Old Jesse Restaurant",
+        "name_cn": "吉士酒家",
+        "address": "41 Tianping Road",
+        "address_cn": "上海市天平路41号",
+        "type": "restaurant",
+        "day": 5,
+        "lat": 31.2071,
+        "lng": 121.4302
+    },
+    {
+        "name": "Fumi Cafe",
+        "name_cn": "Fumi咖啡",
+        "address": "215 Fumin Road",
+        "address_cn": "上海市富民路215号",
+        "type": "restaurant",
+        "day": 5,
+        "lat": 31.2145,
+        "lng": 121.4412
+    },
+    {
+        "name": "Crave Cafe",
+        "name_cn": "Crave咖啡",
+        "address": "208 Xinle Road",
+        "address_cn": "上海市新乐路208号",
+        "type": "restaurant",
+        "day": 5,
+        "lat": 31.2139,
+        "lng": 121.4465
+    },
+    {
+        "name": "Tianzifang",
+        "name_cn": "田子坊",
+        "address": "Lane 210, Taikang Road",
+        "address_cn": "上海市黄浦区泰康路210弄",
+        "type": "attraction",
+        "day": 5,
+        "lat": 31.208034,
+        "lng": 121.464676
+    },
+    {
+        "name": "1000 Trees",
+        "name_cn": "1000棵树",
+        "address": "600 Moganshan Road",
+        "address_cn": "上海市莫干山路600号",
+        "type": "attraction",
+        "day": 6,
+        "lat": 31.2563,
+        "lng": 121.4452
+    },
+    {
+        "name": "Shanghai Natural History Museum",
+        "name_cn": "上海自然博物馆",
+        "address": "Jing'an District",
+        "address_cn": "上海市静安区",
+        "type": "attraction",
+        "day": 6,
+        "lat": 31.2288,
+        "lng": 121.4474
+    }
+]

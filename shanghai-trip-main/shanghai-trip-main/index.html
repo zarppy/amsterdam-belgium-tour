@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shanghai & Suzhou Adventure | PW & JT Families</title>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #1a1a1a;
+            --accent-color: #c0392b;
+            --gold-color: #d4af37;
+            --bg-color: #f9f9f9;
+            --text-color: #333;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--gold-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.6)), url('images/shanghai_cover_skyline_1764993807870.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        /* Day Sections */
+        .day-section {
+            min-height: 100vh;
+            padding: 80px 5%;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .day-section:nth-child(even) {
+            background: #f5f5f5;
+            flex-direction: row-reverse;
+        }
+
+        .day-content {
+            flex: 1;
+            max-width: 800px;
+        }
+
+        .day-hero-image {
+            flex: 1;
+            min-width: 500px;
+        }
+
+        .day-hero-image img {
+            width: 100%;
+            height: 600px;
+            object-fit: cover;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .day-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: var(--accent-color);
+            line-height: 1;
+        }
+
+        .day-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin: 1rem 0;
+            color: var(--primary-color);
+        }
+
+        .day-date {
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 2rem;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--accent-color), transparent);
+        }
+
+        .time-slot {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .time-slot::before {
+            content: '';
+            position: absolute;
+            left: -34px;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            background: var(--accent-color);
+            border-radius: 50%;
+            border: 2px solid white;
+            box-shadow: 0 0 0 2px var(--accent-color);
+        }
+
+        .time {
+            font-weight: 700;
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .activity {
+            background: white;
+            padding: 1rem;
+            border-radius: 5px;
+            border-left: 4px solid var(--primary-color);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .activity strong {
+            color: var(--primary-color);
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+        }
+
+        .location-highlight {
+            background-color: var(--gold-color);
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .location-restaurant {
+            background-color: #2196F3;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .location-shop {
+            background-color: #FFC107;
+            color: #333;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .location-attraction {
+            background-color: #F44336;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        /* Map Section */
+        .map-section {
+            padding: 80px 5%;
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+        }
+
+        .map-section h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        #map {
+            height: 600px;
+            width: 100%;
+            max-width: 1400px;
+            margin: 2rem auto;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .map-filters {
+            margin: 2rem 0;
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.7rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--gold-color);
+            border-color: var(--gold-color);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+
+            .day-section {
+                flex-direction: column !important;
+                padding: 60px 5%;
+            }
+
+            .day-hero-image {
+                min-width: 100%;
+            }
+
+            .day-hero-image img {
+                height: 400px;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#day1">Day 1</a></li>
+            <li><a href="#day2">Day 2</a></li>
+            <li><a href="#day3">Day 3</a></li>
+            <li><a href="#day4">Day 4</a></li>
+            <li><a href="#day5">Day 5</a></li>
+            <li><a href="#day6">Day 6</a></li>
+            <li><a href="#map-section">Map</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>Shanghai & Suzhou</h1>
+        <p>7 Days of Adventure</p>
+        <p style="font-size: 1rem; margin-top: 1rem; opacity: 0.9;">December 25-31 | PW & JT Families</p>
+    </section>
+
+    <!-- Day 1 -->
+    <section id="day1" class="day-section">
+        <div class="day-content">
+            <div class="day-number">01</div>
+            <h2 class="day-title">Tech, Trends & Old Shanghai</h2>
+            <p class="day-date">Thursday, 25 December</p>
+
+            <div class="timeline">
+                <div class="time-slot">
+                    <div class="time">06:00</div>
+                    <div class="activity">
+                        <strong>Arrival</strong><br>
+                        Land at PVG. Taxi to Melia Shanghai Parkside. Drop bags.
+                    </div>
+                </div>
+                <div class="time-slot">
+                    <div class="time">09:30</div>
+                    <div class="activity">
+                        <strong>Camera Heaven</strong><br>
+                        Taxi to <span class="location-highlight">Xingguang Photographic Equipment City</span> (288 Luban
+                        Road).
+                    </div>
+                </div>
+                <div class="time-slot">
+                    <div class="time">12:00</div>
+                    <div class="activity">
+                        <strong>DJI & Xintiandi</strong><br>
+                        Visit DJI Flagship Store. Lunch at Shake Shack or Ye Shanghai.<br>
+                        <em>Nearby: <span class="location-highlight">Ah Ma Handmade</span></em>
+                    </div>
+                </div>
+                <div class="time-slot">
+                    <div class="time">14:30</div>
+                    <div class="activity">
+                        <strong>The "Chic" Shoe Run</strong><br>
+                        Taxi to <span class="location-highlight">Pane Shoe Store</span> (22 Yongyuan Road).<br>
+                        <em>Walk to Zhangyuan for Blue Bottle Coffee.</em>
+                    </div>
+                </div>
+                <div class="time-slot">
+                    <div class="time">17:30</div>
+                    <div class="activity">
+                        <strong>Dinner</strong><br>
+                        Eat at Reel Dept Store or Zhangyuan.
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="day-hero-image">
+            <img src="images/shanghai_day1_camera_gear_1764993827291.png" alt="Day 1 - Camera Gear">
+        </div>
+    </section>
+
+    <!-- Day 2 -->
+    <section id="day2" class="day-section">
+        <div class="day-content">
+            <div class="day-number">02</div>
+            <h2 class="day-title">Shanghai Disneyland</h2>
+            <p class="day-date">Friday, 26 December | The "Thai Model" Optimized Route</p>
+
+            <div class="timeline">
+                <div class="time-slot">
+                    <div class="time">06:50</div>
+                    <div class="activity">
+                        <strong>Depart</strong><br>
+                        Hotel shuttle or walk to park gate.
+                    </div>
+                </div>
+                <div class="time-slot">
+                    <div class="time">07:30</div>
+                    <div class="activity">
+                        <strong>Entry</strong><br>
+                        Use <em>Middle-Right security lanes</em> (often faster).
+                    </div>
+                </div>
+                <div class="time-slot">
+                    <div class="time">08:00</div>
+                    <div class="activity">
+                        <strong>The Efficient Route</strong><br>
+                        <strong>1. Zootopia (Hot Pursuit)</strong> - Go immediately<br>
+                        <em>Shortcut: Right of Castle → Fantasy Moonlight → Treasure Cove → Middle path at
+                            shipwreck</em><br><br>
+
+                        <strong>2. Soaring Over the Horizon</strong><br>
+                        <em>Enter Gate 2, ask for Back Row (Section 1) for best non-distorted view</em><br><br>
+
+                        <strong>3. Pirates of the Caribbean</strong><br>
+                        <em>Use the Far Right queue line</em><br><br>
+
+                        <strong>4. TRON Lightcycle</strong><br>
+                        <em>Ride in Front Row; exit via far right walkway</em>
+                    </div>
+                </div>
+                <div class="time-slot">
+                    <div class="time">13:00</div>
+                    <div class="activity">
+                        <strong>Lunch</strong><br>
+                        Barbossa's Bounty (Treasure Cove) – BBQ Ribs
+                    </div>
+                </div>
+                <div class="time-slot">
+                    <div class="time">Afternoon</div>
+                    <div class="activity">
+                        <strong>Shows</strong><br>
+                        • <strong>Frozen Show</strong> - Queue Far Left<br>
+                        • <strong>Storm Theater (Jack Sparrow)</strong> - Arrive 40 mins early; sit Rows 5–12 on the
+                        aisle
+                    </div>
+                </div>
+                <div class="time-slot">
+                    <div class="time">20:00/21:15</div>
+                    <div class="activity">
+                        <strong>Fireworks</strong><br>
+                        <em>Spot: Garden of Imagination Bridge (Right side near Carousel) for Castle + Water
+                            reflection</em>
+                    </div>
+                </div>
+                <div class="time-slot">
+                    <div class="time">22:00</div>
+                    <div class="activity">
+                        <strong>Move Hotel</strong><br>
+                        Taxi from Disney to Riverdale Residence Xintiandi (~45 mins, 120-150 RMB)
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="day-hero-image">
+            <img src="images/shanghai_day2_disney_castle_1764993843047.png" alt="Day 2 - Disney Castle">
+            <div style="margin-top: 1rem; display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                <img src="images/shanghai_day2_Disney_walkingroute.png" alt="Disney Walking Route"
+                    style="width: 100%; height: 250px; object-fit: cover; border-radius: 5px;">
+                <img src="images/shanghai_day2_fireworkspots.png" alt="Fireworks Viewing Spots"
+                    style="width: 100%; height: 250px; object-fit: cover; border-radius: 5px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Day 3 -->
+    <section id="day3" class="day-section">
+        <div class="day-content">
+            <div class="day-number">03</div>
+            <h2 class="day-title">The Bund Loop & Christmas Market</h2>
+            <p class="day-date">Saturday, 27 December | Yuyuan → Pudong → Tunnel → North Bund Walk</p>
+
+            <div class="timeline">
+                <div class="time-slot">
+                    <div class="time">09:30</div>
+                    <div class="activity">
+                        <strong>Slow Start</strong><br>
+                        Breakfast near hotel. Try <em>Da Hu Chun</em> (Yunnan South Rd) for Shengjianbao (fried buns)
+                    </div>
+                </div>
+                <div class="time-slot">
+                    <div class="time">11:30</div>
+                    <div class="activity">
+                        <strong>Yuyuan Garden</strong><br>
+                        Walk/Taxi to Yuyuan. Explore the classic garden and Bazaar.
+                    </div>
+                </div>
+                <div class="time-slot">
+                    <div class="time">14:30</div>
+                    <div class="activity">
+                        <strong>Crossing to Pudong</strong><br>
+                        Take Metro Line 14 (Yuyuan to Lujiazui) or Taxi<br><br>
+
+                        <strong>Pudong Loop:</strong><br>
+                        • Walk the Lujiazui circular bridge<br>
+                        • See Oriental Pearl<br>
+                        • Visit Disney Flagship Store (free entry, great photo op)
+                    </div>
+                </div>
+                <div class="time-slot">
+                    <div class="time">17:00</div>
+                    <div class="activity">
+                        <strong>The Subsea Gondola</strong><br>
+                        Take the <em>Bund Sightseeing Tunnel</em> from Pudong to Puxi<br>
+                        <em>Note: It is a psychedelic light rail, not a glass tunnel. Drops you at the Bund (Chenyi
+                            Square)</em>
+                    </div>
+                </div>
+                <div class="time-slot">
+                    <div class="time">17:30</div>
+                    <div class="activity">
+                        <strong>The "North Bund" Walk (Thai Route Part 1)</strong><br>
+                        <em>Route: From Tunnel exit, do NOT look for a bus. Walk North along the river (Zhongshan East
+                            No.1 Rd) for ~10-15 mins</em><br><br>
+
+                        <strong>Destination: Rockbund</strong> (Yuanmingyuan Road)<br>
+                        • Christmas Market (near Peninsula Hotel)<br>
+                        • Waibaidu Bridge (historic steel bridge)<br>
+                        • Union Church (red brick church - great night photos)<br>
+                        • Cafe: <span class="location-highlight">Luneurs</span>
+                    </div>
+                </div>
+                <div class="time-slot">
+                    <div class="time">19:30</div>
+                    <div class="activity">
+                        <strong>The Classic Bund (Thai Route Part 2)</strong><br>
+                        Walk South from Rockbund back along the waterfront promenade<br>
+                        • Peace Hotel<br>
+                        • Customs House (Big Ben style)<br>
+                        • The Bund Bull
+                    </div>
+                </div>
+                <div class="time-slot">
+                    <div class="time">20:30</div>
+                    <div class="activity">
+                        <strong>Dinner</strong><br>
+                        <span class="location-highlight">Gao Lao Jiu Hotpot</span> or <span
+                            class="location-highlight">Long Time Ago</span><br>
+                        <em>Alternative: Haidilao on Beijing East Road or near Nanjing Road</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="day-hero-image">
+            <img src="images/shanghai_day3_map_1764993118621.png" alt="Day 3 - The Bund">
+            <div style="margin-top: 1rem;">
+                <img src="images/shanghai_day3_Christkindlmarkt.png" alt="Christmas Market"
+                    style="width: 100%; height: 350px; object-fit: cover; border-radius: 10px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Day 4 -->
+    <section id="day4" class="day-section">
+        <div class="day-content">
+            <div class="day-number">04</div>
+            <h2 class="day-title">Suzhou Day Trip</h2>
+            <p class="day-date">Sunday, 28 December | <em>Must go Sunday: Museums closed Monday</em></p>
+
+            <div class="timeline">
+                <div class="time-slot">
+                    <div class="time">08:30</div>
+                    <div class="activity">
+                        <strong>Train</strong><br>
+                        High-speed train from Shanghai Railway Station to Suzhou Station (~30 mins)
+                    </div>
+                </div>
+                <div class="time-slot">
+                    <div class="time">10:00</div>
+                    <div class="activity">
+                        <strong>Suzhou Museum</strong><br>
+                        <em>Must Do: Designed by I.M. Pei</em><br>
+                        ⚠️ <strong>Book tickets 7 days in advance on WeChat!</strong><br><br>
+
+                        <strong>Next Door: Humble Administrator's Garden</strong><br>
+                        <em>The most famous garden in China</em>
+                    </div>
+                </div>
+                <div class="time-slot">
+                    <div class="time">13:00</div>
+                    <div class="activity">
+                        <strong>Lunch</strong><br>
+                        Squirrel Fish (Sweet & Sour) at a local restaurant
+                    </div>
+                </div>
+                <div class="time-slot">
+                    <div class="time">14:30</div>
+                    <div class="activity">
+                        <strong>Pingjiang Road</strong><br>
+                        Historic canal street<br>
+                        • Take a <em>manual boat ride</em> (sculling boat)<br>
+                        • Relax in a teahouse listening to <em>Pingtan</em> (musical storytelling)<br>
+                        • Treat: <span class="location-highlight">Hunglou Gelato</span>
+                    </div>
+                </div>
+                <div class="time-slot">
+                    <div class="time">18:00</div>
+                    <div class="activity">
+                        <strong>Return</strong><br>
+                        Train back to Shanghai
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="day-hero-image">
+            <img src="images/shanghai_day4_suzhou.png" alt="Day 4 - Suzhou">
+        </div>
+    </section>
+
+    <!-- Day 5 -->
+    <section id="day5" class="day-section">
+        <div class="day-content">
+            <div class="day-number">05</div>
+            <h2 class="day-title">French Concession "Chic" Walk</h2>
+            <p class="day-date">Monday, 29 December</p>
+
+            <div class="timeline">
+                <div class="time-slot">
+                    <div class="time">10:00</div>
+                    <div class="activity">
+                        <strong>Wukang Road</strong><br>
+                        Wukang Mansion photo op. % Arabica.<br>
+                        <em><span class="location-highlight">Gathering Cafe</span></em>
+                    </div>
+                </div>
+                <div class="time-slot">
+                    <div class="time">12:30</div>
+                    <div class="activity">Lunch @ Anfu Road (RAC Bar or Sunflour).</div>
+                </div>
+                <div class="time-slot">
+                    <div class="time">14:00</div>
+                    <div class="activity">
+                        <strong>Anfu Road Shopping</strong><br>
+                        Brandy Melville, Harmay, Casa Casa.<br>
+                        <em><span class="location-highlight">13DE MARZO</span>, <span
+                                class="location-highlight">Marmalade</span></em>
+                    </div>
+                </div>
+                <div class="time-slot">
+                    <div class="time">16:30</div>
+                    <div class="activity">
+                        <strong>IAPM Mall</strong><br>
+                        Luxury shopping break.<br>
+                        <em>Dinner: <span class="location-highlight">Old Jesse Restaurant</span></em>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="day-hero-image">
+            <img src="images/shanghai_day5_Wugang road_French concession.png" alt="Day 5 - French Concession">
+        </div>
+    </section>
+
+    <!-- Day 6 -->
+    <section id="day6" class="day-section">
+        <div class="day-content">
+            <div class="day-number">06</div>
+            <h2 class="day-title">Art, Nature & Departure</h2>
+            <p class="day-date">Tue 30 Dec - Wed 31 Dec</p>
+
+            <div class="timeline">
+                <div class="time-slot">
+                    <div class="time">Tue 09:30</div>
+                    <div class="activity">
+                        <strong>Shanghai Natural History Museum</strong><br>
+                        Animatronic dinosaurs & architecture.
+                    </div>
+                </div>
+                <div class="time-slot">
+                    <div class="time">Tue 12:30</div>
+                    <div class="activity">
+                        <strong>1000 Trees</strong><br>
+                        Lunch inside the "Hanging Gardens" mall.
+                    </div>
+                </div>
+                <div class="time-slot">
+                    <div class="time">Tue 14:30</div>
+                    <div class="activity">
+                        <strong>M50 Creative Park</strong><br>
+                        Art galleries and graffiti walls.
+                    </div>
+                </div>
+                <div class="time-slot">
+                    <div class="time">Wed 10:00</div>
+                    <div class="activity">Checkout & Taxi to Pudong T2. Fly to Osaka (13:30).</div>
+                </div>
+            </div>
+        </div>
+        <div class="day-hero-image">
+            <img src="images/shanghai_day6_Tian-An-1000-Trees.jpg" alt="Day 6 - 1000 Trees">
+        </div>
+    </section>
+
+    <!-- Interactive Map Section -->
+    <section id="map-section" class="map-section">
+        <h2>📍 Interactive Location Map</h2>
+        <p>Click markers to see location details | Filter by Day or Category</p>
+
+        <div class="map-filters">
+            <strong>By Day:</strong>
+            <button class="filter-btn active" data-filter="day" data-value="all">All Days</button>
+            <button class="filter-btn" data-filter="day" data-value="1">Day 1</button>
+            <button class="filter-btn" data-filter="day" data-value="3">Day 3</button>
+            <button class="filter-btn" data-filter="day" data-value="4">Day 4</button>
+            <button class="filter-btn" data-filter="day" data-value="5">Day 5</button>
+            <button class="filter-btn" data-filter="day" data-value="6">Day 6</button>
+        </div>
+
+        <div class="map-filters" style="margin-top: 1rem;">
+            <strong>By Type:</strong>
+            <button class="filter-btn" data-filter="type" data-value="restaurant"
+                style="background: rgba(33, 150, 243, 0.2); border-color: #2196F3;">🍴 Restaurants</button>
+            <button class="filter-btn" data-filter="type" data-value="shop"
+                style="background: rgba(255, 193, 7, 0.2); border-color: #FFC107;">🛍️ Shops</button>
+            <button class="filter-btn" data-filter="type" data-value="attraction"
+                style="background: rgba(244, 67, 54, 0.2); border-color: #F44336;">🏛️ Attractions</button>
+            <button class="filter-btn" data-filter="type" data-value="hotel"
+                style="background: rgba(158, 158, 158, 0.2); border-color: #9E9E9E;">🏨 Hotel</button>
+        </div>
+
+        <div id="map"></div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 PW & JT Families | Shanghai & Suzhou Adventure</p>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+    <!-- Main Script -->
+    <script>
+        // Initialize map
+        const map = L.map('map').setView([31.2304, 121.4737], 11);
+
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Define custom colored icons
+        const icons = {
+            restaurant: L.icon({
+                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+            }),
+            shop: L.icon({
+                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-gold.png',
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+            }),
+            attraction: L.icon({
+                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+            }),
+            hotel: L.icon({
+                iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-grey.png',
+                shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+                iconSize: [25, 41],
+                iconAnchor: [12, 41],
+                popupAnchor: [1, -34],
+                shadowSize: [41, 41]
+            })
+        };
+
+        // Store markers
+        let markers = [];
+        let currentDayFilter = 'all';
+        let currentTypeFilter = null;
+
+        // Fetch and display locations
+        fetch('data/locations.json')
+            .then(response => response.json())
+            .then(locations => {
+                locations.forEach(loc => {
+                    const icon = icons[loc.type] || icons.attraction;
+                    const marker = L.marker([loc.lat, loc.lng], { icon: icon })
+                        .bindPopup(`
+                            <strong>${loc.name}</strong><br>
+                            <em>${loc.name_cn}</em><br>
+                            ${loc.address}<br>
+                            <small>${loc.address_cn}</small><br>
+                            <span style="color: #999;">${loc.type === 'restaurant' ? '🍴 Restaurant/Cafe' : loc.type === 'shop' ? '🛍️ Shop' : loc.type === 'hotel' ? '🏨 Hotel' : '🏛️ Attraction'}</span>
+                        `)
+                        .addTo(map);
+
+                    marker.dayFilter = loc.day;
+                    marker.typeFilter = loc.type;
+                    markers.push(marker);
+                });
+            })
+            .catch(error => console.error('Error loading locations:', error));
+
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filterType = btn.dataset.filter;
+                const filterValue = btn.dataset.value;
+
+                // Update active button in the same filter group
+                if (filterType === 'day') {
+                    document.querySelectorAll('[data-filter="day"]').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    currentDayFilter = filterValue;
+                } else if (filterType === 'type') {
+                    // Toggle type filter
+                    if (btn.classList.contains('active')) {
+                        btn.classList.remove('active');
+                        currentTypeFilter = null;
+                    } else {
+                        document.querySelectorAll('[data-filter="type"]').forEach(b => b.classList.remove('active'));
+                        btn.classList.add('active');
+                        currentTypeFilter = filterValue;
+                    }
+                }
+
+                // Apply filters
+                markers.forEach(marker => {
+                    let showMarker = true;
+
+                    // Check day filter
+                    if (currentDayFilter !== 'all' && marker.dayFilter != currentDayFilter && marker.dayFilter !== 0) {
+                        showMarker = false;
+                    }
+
+                    // Check type filter
+                    if (currentTypeFilter && marker.typeFilter !== currentTypeFilter) {
+                        showMarker = false;
+                    }
+
+                    // Show/hide marker
+                    if (showMarker) {
+                        map.addLayer(marker);
+                    } else {
+                        map.removeLayer(marker);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

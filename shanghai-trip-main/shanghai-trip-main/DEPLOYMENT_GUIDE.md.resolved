@@ -1,0 +1,154 @@
+# GitHub Pages Deployment Guide
+
+## Quick Start
+
+Your website is now ready to deploy! Follow these steps to publish it on GitHub Pages.
+
+## Prerequisites
+
+- GitHub account (zarppy)
+- Git installed on your computer
+
+## Step 1: Prepare Website Files
+
+Your website files are located at:
+```
+C:\Users\14507183\.gemini\antigravity\brain\ff88d5d3-1ada-49f6-a98c-54429a49f07e\website\
+```
+
+The structure is:
+```
+website/
+├── index.html          (main page)
+├── data/
+│   └── locations.json  (location data)
+└── images/             (copy all photos here)
+```
+
+## Step 2: Copy Photos to Website Folder
+
+Copy all your photos to the `website/images/` folder:
+```powershell
+# Create images folder
+New-Item -ItemType Directory -Path "C:\Users\14507183\.gemini\antigravity\brain\ff88d5d3-1ada-49f6-a98c-54429a49f07e\website\images" -Force
+
+# Copy photos
+Copy-Item "C:\Users\14507183\.gemini\antigravity\brain\ff88d5d3-1ada-49f6-a98c-54429a49f07e\shanghai_*.png" -Destination "C:\Users\14507183\.gemini\antigravity\brain\ff88d5d3-1ada-49f6-a98c-54429a49f07e\website\images\"
+Copy-Item "C:\Users\14507183\.gemini\antigravity\brain\ff88d5d3-1ada-49f6-a98c-54429a49f07e\shanghai_*.jpg" -Destination "C:\Users\14507183\.gemini\antigravity\brain\ff88d5d3-1ada-49f6-a98c-54429a49f07e\website\images\"
+```
+
+## Step 3: Update Image Paths in HTML
+
+The [index.html](file:///C:/Users/14507183/.gemini/antigravity/brain/ff88d5d3-1ada-49f6-a98c-54429a49f07e/website/index.html) currently references images like `../shanghai_day1_camera_gear_1764993827291.png`.
+
+These need to be updated to `images/shanghai_day1_camera_gear_1764993827291.png`.
+
+I've created a fixed version for you!
+
+## Step 4: Create GitHub Repository
+
+1. Go to https://github.com/new
+2. Repository name: `shanghai-trip`
+3. Description: "Shanghai & Suzhou Travel Itinerary"
+4. Set to **Public**
+5. Do NOT initialize with README
+6. Click "Create repository"
+
+## Step 5: Push Files to GitHub
+
+Open PowerShell in the website folder and run:
+
+```powershell
+# Navigate to website folder
+cd "C:\Users\14507183\.gemini\antigravity\brain\ff88d5d3-1ada-49f6-a98c-54429a49f07e\website"
+
+# Initialize Git
+git init
+
+# Add all files
+git add .
+
+# Commit
+git commit -m "Initial commit - Shanghai & Suzhou travel website"
+
+# Add remote (replace zarppy with your username)
+git remote add origin https://github.com/zarppy/shanghai-trip.git
+
+# Push to GitHub
+git push -u origin main
+```
+
+## Step 6: Enable GitHub Pages
+
+1. Go to your repository: `https://github.com/zarppy/shanghai-trip`
+2. Click **Settings**
+3. Scroll to **Pages** (left sidebar)
+4. Under "Source", select:
+   - Branch: `main`
+   - Folder: `/ (root)`
+5. Click **Save**
+
+## Step 7: Access Your Website
+
+Your site will be live at:
+```
+https://zarppy.github.io/shanghai-trip/
+```
+
+It may take 2-3 minutes to build. Refresh the GitHub Pages settings to see the status.
+
+## Testing Locally First
+
+Before deploying, test locally:
+
+1. Open PowerShell in the website folder
+2. Run a simple HTTP server:
+   ```powershell
+   python -m http.server 8000
+   ```
+3. Open browser to: `http://localhost:8000`
+4. Test the map and navigation
+
+## Troubleshooting
+
+### Images not showing?
+- Check that images are in the `images/` folder
+- Verify image paths in [index.html](file:///C:/Users/14507183/.gemini/antigravity/brain/ff88d5d3-1ada-49f6-a98c-54429a49f07e/website/index.html) start with `images/`
+
+### Map not loading?
+- Check browser console (F12) for errors
+- Ensure [data/locations.json](file:///C:/Users/14507183/.gemini/antigravity/brain/ff88d5d3-1ada-49f6-a98c-54429a49f07e/website/data/locations.json) exists
+
+### Site not publishing?
+- Wait 2-3 minutes after enabling Pages
+- Check GitHub Actions tab for build status
+- Ensure repository is public
+
+## Updating the Website
+
+To make changes later:
+
+```powershell
+cd "C:\Users\14507183\.gemini\antigravity\brain\ff88d5d3-1ada-49f6-a98c-54429a49f07e\website"
+
+# Make your edits to index.html or other files
+
+git add .
+git commit -m "Description of changes"
+git push
+```
+
+Changes will appear on your site in 1-2 minutes!
+
+## Custom Domain (Optional)
+
+To use a custom domain like `shanghai-trip.com`:
+
+1. Buy domain from any registrar
+2. Add a `CNAME` file to your repository with your domain
+3. Configure DNS settings per GitHub's instructions
+4. Update custom domain in GitHub Pages settings
+
+---
+
+Your website is ready to go! 🎉
