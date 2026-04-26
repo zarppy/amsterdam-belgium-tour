@@ -22,56 +22,82 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     window.addEventListener('scroll', updateActiveLink);
-    updateActiveLink(); // Initial check
+    updateActiveLink();
 
     // 2. Leaflet Map Initialization
-    const map = L.map('map').setView([51.50, 4.5], 8);
+    const map = L.map('map').setView([51.50, 4.5], 7);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    // Marker Data (Updated for 11-day Itinerary)
+    // Tour Locations Data (Revised 10-Day Loop + Bucket List Pit Stops)
     const tourLocations = [
-        { day: 1, name: "Amsterdam Schiphol", lat: 52.3105, lng: 4.7683, type: "transport" },
-        { day: 1, name: "Jordaan District", lat: 52.3777, lng: 4.8817, type: "attraction" },
+        { day: 1, name: "Schiphol Airport", lat: 52.3105, lng: 4.7683, type: "transport" },
+        { day: 1, name: "Jordaan District", lat: 52.3777, lng: 4.8817, type: "hotel" },
+        { day: 1, name: "Gifu Ramen Bar", lat: 52.3693, lng: 4.8805, type: "food" },
+        { day: 1, name: "Albert Heijn Westermarkt", lat: 52.3741, lng: 4.8843, type: "food" },
+        { day: 1, name: "Pancakes Amsterdam", lat: 52.3752, lng: 4.8841, type: "food" },
+        { day: 1, name: "Febo Leidsestraat", lat: 52.3653, lng: 4.8872, type: "food" },
+        
         { day: 2, name: "Rijksmuseum", lat: 52.3600, lng: 4.8852, type: "attraction" },
-        { day: 3, name: "Giethoorn Village", lat: 52.7389, lng: 6.0781, type: "attraction" },
-        { day: 3, name: "Zwolle Center", lat: 52.5125, lng: 6.0944, type: "attraction" },
-        { day: 4, name: "Utrecht Dom Tower", lat: 52.0907, lng: 5.1214, type: "attraction" },
+        { day: 2, name: "Lombardo's Burgers", lat: 52.3629, lng: 4.8920, type: "food" },
+        { day: 2, name: "Vondelpark", lat: 52.3584, lng: 4.8686, type: "attraction" },
+        { day: 2, name: "Lera Cafe Matcha", lat: 52.3562, lng: 4.8906, type: "food" },
+        { day: 2, name: "nNea Pizza", lat: 52.3694, lng: 4.8703, type: "food" },
+        { day: 2, name: "Cafe Marcella (Burrata)", lat: 52.3607, lng: 4.8973, type: "food" },
+
+        { day: 3, name: "Giethoorn Parking P1", lat: 52.7401, lng: 6.0792, type: "transport" },
+        { day: 3, name: "Smit's Paviljoen", lat: 52.7389, lng: 6.0781, type: "attraction" },
+        { day: 3, name: "Firma Stroop (Utrecht)", lat: 52.0934, lng: 5.1147, type: "food" },
+        { day: 3, name: "Utrecht Center", lat: 52.0907, lng: 5.1214, type: "hotel" },
+
         { day: 4, name: "Rotterdam Markthal", lat: 51.9179, lng: 4.4852, type: "attraction" },
-        { day: 5, name: "Brussels Grand Place", lat: 50.8467, lng: 4.3525, type: "attraction" },
-        { day: 6, name: "Atomium", lat: 50.8949, lng: 4.3415, type: "attraction" },
-        { day: 6, name: "Royal Palace of Brussels", lat: 50.8417, lng: 4.3622, type: "attraction" },
-        { day: 8, name: "Namur Citadel", lat: 50.4605, lng: 4.8640, type: "attraction" },
-        { day: 8, name: "Dinant Collegiate Church", lat: 50.2611, lng: 4.9124, type: "attraction" },
-        { day: 8, name: "Château de Walzin", lat: 50.2201, lng: 4.9221, type: "attraction" },
-        { day: 9, name: "Ghent Graslei", lat: 51.0555, lng: 3.7208, type: "attraction" },
-        { day: 9, name: "Gravensteen Castle", lat: 51.0574, lng: 3.7206, type: "attraction" },
-        { day: 10, name: "Bruges Markt", lat: 51.2087, lng: 3.2241, type: "attraction" },
-        { day: 10, name: "Antwerp Central Station", lat: 51.2172, lng: 4.4211, type: "attraction" },
-        { day: 11, name: "Brussels Airport", lat: 50.9010, lng: 4.4844, type: "transport" }
+        { day: 4, name: "Brussels Grand Place", lat: 50.8467, lng: 4.3525, type: "hotel" },
+        
+        { day: 5, name: "Atomium", lat: 50.8949, lng: 4.3415, type: "attraction" },
+        { day: 5, name: "Mont des Arts", lat: 50.8444, lng: 4.3567, type: "attraction" },
+        
+        { day: 6, name: "Namur Citadel", lat: 50.4605, lng: 4.8640, type: "attraction" },
+        { day: 6, name: "Dinant Church", lat: 50.2611, lng: 4.9124, type: "attraction" },
+        { day: 6, name: "Château de Walzin", lat: 50.2201, lng: 4.9221, type: "attraction" },
+        
+        { day: 7, name: "Ghent Graslei", lat: 51.0555, lng: 3.7208, type: "attraction" },
+        { day: 7, name: "Bruges Market", lat: 51.2087, lng: 3.2241, type: "hotel" },
+        
+        { day: 8, name: "Rozenhoedkaai", lat: 51.2075, lng: 3.2268, type: "attraction" },
+        { day: 8, name: "Antwerp Station", lat: 51.2172, lng: 4.4211, type: "attraction" },
+        
+        { day: 9, name: "Fabel Friet", lat: 52.3697, 4.8845, type: "food" },
+        { day: 9, name: "Van Stapele Cookies", lat: 52.3688, 4.8899, type: "food" },
+        { day: 9, name: "Harry's Pasta", lat: 52.3719, 4.9004, type: "food" },
+        { day: 9, name: "Rembrandt Corner", lat: 52.3695, 4.9015, type: "food" },
+        { day: 9, name: "Amsterdam Return", lat: 52.3792, lng: 4.8994, type: "transport" }
     ];
 
     const markers = [];
 
-    // Icon Definitions
+    // Icons
     const icons = {
         attraction: L.icon({
             iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
             shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-            iconSize: [25, 41],
-            iconAnchor: [12, 41],
-            popupAnchor: [1, -34],
-            shadowSize: [41, 41]
+            iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowSize: [41, 41]
         }),
         transport: L.icon({
             iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
             shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
-            iconSize: [25, 41],
-            iconAnchor: [12, 41],
-            popupAnchor: [1, -34],
-            shadowSize: [41, 41]
+            iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowSize: [41, 41]
+        }),
+        hotel: L.icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-gold.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowSize: [41, 41]
+        }),
+        food: L.icon({
+            iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+            shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+            iconSize: [25, 41], iconAnchor: [12, 41], popupAnchor: [1, -34], shadowSize: [41, 41]
         })
     };
 
@@ -88,29 +114,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        if (markers.length > 0) {
+        if (markers.length > 1 && filterDay !== 'all') {
             const group = new L.featureGroup(markers);
-            map.fitBounds(group.getBounds().pad(0.1));
+            map.fitBounds(group.getBounds().pad(0.2));
+        } else if (filterDay === 'all') {
+            map.setView([51.50, 4.5], 7);
         }
     };
 
     addMarkers();
-
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            addMarkers(btn.getAttribute('data-value'));
-        });
-    });
-
-    const observerOptions = { threshold: 0.1 };
-    const sectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) entry.target.classList.add('visible');
-        });
-    }, observerOptions);
-
-    sections.forEach(section => sectionObserver.observe(section));
 });

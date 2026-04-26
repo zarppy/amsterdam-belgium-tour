@@ -1,19 +1,23 @@
-# Implementation Plan: Netherlands & Belgium Tour Website
-## PW-Tour EU Edition | 28 September – 9 October 2026
+---
+
+## 3. Car Rental Cost Analysis
+| Option | Route | Est. Cost (6 Days) | Pros/Cons |
+|--------|-------|--------------------|-----------|
+| **Option A (RECOM.)** | Rent/Return AMS (1-7 Oct) | €350 - €500 | **Pros**: No one-way fees, easy midday flight prep. **Cons**: Requires drive back on Day 8. |
+| **Option B** | Rent AMS -> Return BRU + Train | €650+ | **Pros**: Less total driving. **Cons**: High one-way fees (€150+), train luggage hassle. |
+
+**Verdict**: Proceed with **Option A**. Clients pick up the car in Amsterdam (Day 3) and return it in Amsterdam (Day 9 Night).
 
 ---
 
-## 1. Multi-Agent Architecture
-
-| Role | Model | Responsibility |
-|------|-------|----------------|
-| **Architect** | Claude Sonnet 4.6 (Thinking) | High-level planning, itinerary curation, content logic, user review gates |
-| **Worker** | Gemini 3.0 Flash | Code execution, file modification, image research, data preparation, HTML/JS/CSS implementation |
-
-**Workflow Protocol:**
-1. Architect produces plan → User reviews → User approves → Worker executes → Architect validates result.
-2. User review is required before any key step is executed.
-3. All content uses British English.
+## 4. Accommodation Suggestions (3-4 Star)
+| Location | Recommendation | Type | Rationale |
+|----------|----------------|------|-----------|
+| **Amsterdam** | **Linden Hotel** (Jordaan) | 3-star Boutique | Historic charm, quiet area. |
+| **Utrecht** | **Eye Hotel** | 4-star | Architectural gem, central. |
+| **Brussels** | **Adagio Grand Place** | 4-star | Aparthotel with kitchen (Family). |
+| **Ardennes** | **Château de Namur** | Estate | Scenic countryside experience. |
+| **Bruges** | **Grand Hotel Casselbergh** | 4-star | Prime medieval location. |
 
 ---
 
@@ -111,12 +115,16 @@ The new site will adopt the **Shanghai visual format** as the primary structure,
 
 | Day | Date | Title | Key Activities |
 |-----|------|-------|----------------|
-| **6** | 3 Oct (Sat) | Arrive Brussels · Grand Place & Chocolate Row | Train arrival Brussels-Midi · Hotel check-in centre · Grand Place UNESCO walk · Galeries Royales Saint-Hubert · Manneken Pis · Rue au Beurre chocolate shops · Evening beer at a traditional Brussels café |
-| **7** | 4 Oct (Sun) | Brussels Deep Dive: Art Nouveau & Atomium | Atomium + Mini-Europe (morning) · Ixelles Art Nouveau facades walk · Horta Museum · Sablon antique quarter · Royal Palace exterior · Evening in Flagey neighbourhood |
-| **8** | 5 Oct (Mon) | Scenic Drive: Namur, Dinant & Ardennes Pit Stops | Pick up rental car · Drive to **Namur** (citadel view, 50 min) · Continue to **Dinant** (Notre-Dame + Citadel photo stop, iconic river view) · **Château de Walzin** viewpoint (scenic cliff pit stop) · **Crupet** medieval village photo stop · Return to base hotel in Namur/Dinant area overnight |
-| **9** | 6 Oct (Tue) | Ghent: Medieval Powerhouse | Drive from Namur to **Ghent** (1 hr 15 min) · Park P+R · Gravensteen Castle · Graslei & Korenlei canal promenade · St Bavo's Cathedral (Ghent Altarpiece) · Patershol neighbourhood lunch · Late afternoon drive to **Bruges** (30 min) |
-| **10** | 7 Oct (Wed) | Bruges: The Jewel of Flanders + Antwerp Sprint | Morning in **Bruges**: Markt & Belfry tower · Basilica of the Holy Blood · Canal boat ride · Bruges chocolate tasting (Dominique Persoone) · Early afternoon sprint to **Antwerp** (55 min drive) · Antwerp Central Station (architectural masterpiece) · Cathedral of Our Lady exterior · Meir shopping street · Possible Rubens House exterior · Overnight Antwerp |
-| **11** | 8 Oct (Thu) | Return Brussels · Departure Evening | Morning buffer in Antwerp → Drive back to Brussels (45 min) · Return rental car · Last Grand Place / Sablon chocolate stop · Transfer to Brussels Airport (BRU) · Fly to Melbourne (depart EU 8 Oct) |
+| **1** | 29 Sep (Tue) | Arrival AMS | 06:00 Land Schiphol → Jordaan check-in. 18:00 Twilight walk. |
+| **2** | 30 Sep (Wed) | AMS Culture | 08:30 Rijksmuseum. 20:00 Night silhouette canal belt. |
+| **3** | 1 Oct (Thu) | Giethoorn | 08:00 **Rent Car (AMS)**. 10:30 Giethoorn (P1 Parking). Stay Utrecht. |
+| **4** | 2 Oct (Fri) | Rotterdam/BE | 09:00 Rotterdam Markthal. 20:00 Grand Place Night lights. |
+| **5** | 3 Oct (Sat) | Brussels Hub | 06:30 Sunrise Atomium. 19:30 Mont des Arts Silhouette. |
+| **6** | 4 Oct (Sun) | Meuse Valley | 09:00 Namur Citadel. 14:00 Dinant Icons. 20:00 Night reflections. |
+| **7** | 5 Oct (Mon) | Ghent/Bruges | 08:30 Ghent (Graslei). 20:30 Bruges Night Fairytale. |
+| **8** | 6 Oct (Tue) | Bruges/Antwerp | 05:45 Dawn Rozenhoedkaai. 11:00 Antwerp Station. 17:00 Drive to AMS. |
+| **9** | 7 Oct (Wed) | AMS Final | 10:00 Jordaan boutiques. 19:00 **Return Car (AMS)**. Stay AMS. |
+| **10** | 8 Oct (Thu) | Departure | 09:00 Breakfast. 10:00 Schiphol. **12:00 Midday Flight MEL**. |
 
 ---
 
@@ -238,5 +246,19 @@ amsterdam-copenhagen/
 
 ---
 
-*Plan prepared by Architect (Claude Sonnet 4.6 Thinking) · 19 April 2026*
-*Awaiting user review and approval before any code execution begins.*
+## 11. Restaurant Bucket List (Integrated Pit Stops)
+| City | Venue | Speciality | Mapped Status |
+|------|-------|------------|---------------|
+| **Amsterdam** | **nNea Pizza** | Best Margarita | Day 2 Dinner |
+| **Amsterdam** | **Gifu Ramen Bar** | Authentic Ramen | Day 1 Lunch |
+| **Amsterdam** | **Fabel Friet** | Best Fries | Day 9 Snack |
+| **Amsterdam** | **Van Stapele** | Chocolate Cookies | Day 9 Snack |
+| **Amsterdam** | **Lera Cafe** | Matcha | Day 2 Afternoon |
+| **Amsterdam** | **Lombardo's** | Gourmet Burgers | Day 2 Lunch |
+| **Amsterdam** | **Febo** | Wall Snacks | Day 1 Snack |
+| **Amsterdam** | **Rembrandt Corner** | Classic Cafe | Day 9 Coffee |
+| **Amsterdam** | **Pancakes AMS** | Dutch Pancakes | Day 1 Evening |
+| **Amsterdam** | **Harry's Pasta** | Fast Pasta | Day 9 Quick Meal |
+| **Utrecht** | **Firma Stroop** | Fresh Stroopwafel | Day 3 Pit Stop |
+
+---
