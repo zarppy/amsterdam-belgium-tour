@@ -25,6 +25,12 @@ document.addEventListener('DOMContentLoaded', () => {
     updateActiveLink();
 
     // 2. Leaflet Map Initialization
+    const mapElement = document.getElementById('map');
+    if (!mapElement || typeof L === 'undefined') {
+        console.warn('Map container or Leaflet not found.');
+        return;
+    }
+
     const map = L.map('map').setView([51.50, 4.5], 7);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -39,7 +45,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { day: 1, name: "Albert Heijn Westermarkt", lat: 52.3741, lng: 4.8843, type: "food" },
         { day: 1, name: "Pancakes Amsterdam", lat: 52.3752, lng: 4.8841, type: "food" },
         { day: 1, name: "Febo Leidsestraat", lat: 52.3653, lng: 4.8872, type: "food" },
-        
+
         { day: 2, name: "Rijksmuseum", lat: 52.3600, lng: 4.8852, type: "attraction" },
         { day: 2, name: "Lombardo's Burgers", lat: 52.3629, lng: 4.8920, type: "food" },
         { day: 2, name: "Vondelpark", lat: 52.3584, lng: 4.8686, type: "attraction" },
@@ -54,25 +60,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
         { day: 4, name: "Rotterdam Markthal", lat: 51.9179, lng: 4.4852, type: "attraction" },
         { day: 4, name: "Brussels Grand Place", lat: 50.8467, lng: 4.3525, type: "hotel" },
-        
+
         { day: 5, name: "Atomium", lat: 50.8949, lng: 4.3415, type: "attraction" },
         { day: 5, name: "Mont des Arts", lat: 50.8444, lng: 4.3567, type: "attraction" },
-        
+
         { day: 6, name: "Namur Citadel", lat: 50.4605, lng: 4.8640, type: "attraction" },
         { day: 6, name: "Dinant Church", lat: 50.2611, lng: 4.9124, type: "attraction" },
         { day: 6, name: "Château de Walzin", lat: 50.2201, lng: 4.9221, type: "attraction" },
-        
+
         { day: 7, name: "Ghent Graslei", lat: 51.0555, lng: 3.7208, type: "attraction" },
         { day: 7, name: "Bruges Market", lat: 51.2087, lng: 3.2241, type: "hotel" },
-        
+
         { day: 8, name: "Rozenhoedkaai", lat: 51.2075, lng: 3.2268, type: "attraction" },
         { day: 8, name: "Antwerp City Center", lat: 51.2194, lng: 4.4025, type: "hotel" },
-        
+
         { day: 9, name: "Antwerp Station", lat: 51.2172, lng: 4.4211, type: "attraction" },
-        { day: 9, name: "Fabel Friet", lat: 52.3697, 4.8845, type: "food" },
-        { day: 9, name: "Van Stapele Cookies", lat: 52.3688, 4.8899, type: "food" },
-        { day: 9, name: "Harry's Pasta", lat: 52.3719, 4.9004, type: "food" },
-        { day: 9, name: "Rembrandt Corner", lat: 52.3695, 4.9015, type: "food" },
+        { day: 9, name: "Fabel Friet", lat: 52.3697, lng: 4.8845, type: "food" },
+        { day: 9, name: "Van Stapele Cookies", lat: 52.3688, lng: 4.8899, type: "food" },
+        { day: 9, name: "Harry's Pasta", lat: 52.3719, lng: 4.9004, type: "food" },
+        { day: 9, name: "Rembrandt Corner", lat: 52.3695, lng: 4.9015, type: "food" },
         { day: 9, name: "Amsterdam Return", lat: 52.3792, lng: 4.8994, type: "transport" }
     ];
 

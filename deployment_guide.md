@@ -28,7 +28,7 @@ git push origin main
 ---
 
 ## 3. Enable GitHub Pages
-1. Go to your repository on GitHub: [github.com/zarppy/amsterdam-copenhagen-tour](https://github.com/zarppy/amsterdam-copenhagen-tour)
+1. Go to your repository on GitHub: [github.com/zarppy/amsterdam-belgium-tour](https://github.com/zarppy/amsterdam-belgium-tour)
 2. Click on **Settings** (top tab).
 3. Click on **Pages** in the left-hand sidebar.
 4. Under **Build and deployment > Branch**, ensure `main` is selected and the folder is `/ (root)`.
@@ -37,7 +37,7 @@ git push origin main
 ---
 
 ## 4. Final Verification Checklist
-Once the site is live at **`https://zarppy.github.io/amsterdam-copenhagen-tour/`**, verify the following:
+Once the site is live at **`https://zarppy.github.io/amsterdam-belgium-tour/`**, verify the following:
 
 - [ ] **Hero Background**: The new "Architectural Charm" background (`hero-bg.png`) should load with a parallax effect.
 - [ ] **10-Day Loop**: The navigation menu should show Day 1 to Day 10 (Day 11 and Copenhagen have been removed).
