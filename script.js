@@ -107,8 +107,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         tourLocations.forEach(loc => {
             if (filterDay === 'all' || loc.day == filterDay) {
+                const label = loc.type === 'food' ? `🍴 Pit Stop: ${loc.name}` : `Day ${loc.day}: ${loc.name}`;
                 const marker = L.marker([loc.lat, loc.lng], { icon: icons[loc.type] || icons.attraction })
-                    .bindPopup(`<strong>Day ${loc.day}: ${loc.name}</strong>`)
+                    .bindPopup(`<strong>${label}</strong>`)
                     .addTo(map);
                 markers.push(marker);
             }
