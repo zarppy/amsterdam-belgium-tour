@@ -24,20 +24,7 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', updateActiveLink);
     updateActiveLink();
 
-    // 2. Leaflet Map Initialization
-    const mapElement = document.getElementById('map');
-    if (!mapElement || typeof L === 'undefined') {
-        console.warn('Map container or Leaflet not found.');
-        return;
-    }
-
-    const map = L.map('map').setView([51.50, 4.5], 7);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
-    // Tour Locations Data (Revised 10-Day Loop + Bucket List Pit Stops)
+    // 2. Tour Data
     const tourLocations = [
         { day: 1, name: "Schiphol Airport", lat: 52.3105, lng: 4.7683, type: "transport" },
         { day: 1, name: "Jordaan District", lat: 52.3777, lng: 4.8817, type: "hotel" },
@@ -82,9 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { day: 9, name: "Amsterdam Return", lat: 52.3792, lng: 4.8994, type: "transport" }
     ];
 
-    const markers = [];
-
-    // Icons
+    // 3. Icons
     const icons = {
         attraction: L.icon({
             iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
@@ -108,27 +93,45 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     };
 
-    const addMarkers = (filterDay = 'all') => {
-        markers.forEach(m => map.removeLayer(m));
-        markers.length = 0;
+    // 4. Leaflet Map Initialization with IntersectionObserver for robustness
+    const mapSection = document.getElementById('map-section');
+    const mapElement = document.getElementById('map');
+    
+    if (mapSection && mapElement) {
+        const mapObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !window.tourMap) {
+                    console.log('Initializing map...');
+                    
+                    if (typeof L === 'undefined') {
+                        console.error('Leaflet (L) is not defined. Check your script tags.');
+                        return;
+                    }
 
-        tourLocations.forEach(loc => {
-            if (filterDay === 'all' || loc.day == filterDay) {
-                const label = loc.type === 'food' ? `🍴 Pit Stop: ${loc.name}` : `Day ${loc.day}: ${loc.name}`;
-                const marker = L.marker([loc.lat, loc.lng], { icon: icons[loc.type] || icons.attraction })
-                    .bindPopup(`<strong>${label}</strong>`)
-                    .addTo(map);
-                markers.push(marker);
-            }
-        });
+                    const map = L.map('map').setView([51.50, 4.5], 7);
+                    window.tourMap = map;
 
-        if (markers.length > 1 && filterDay !== 'all') {
-            const group = new L.featureGroup(markers);
-            map.fitBounds(group.getBounds().pad(0.2));
-        } else if (filterDay === 'all') {
-            map.setView([51.50, 4.5], 7);
-        }
-    };
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    }).addTo(map);
 
-    addMarkers();
+                    tourLocations.forEach(loc => {
+                        const label = loc.type === 'food' ? `🍴 Pit Stop: ${loc.name}` : `Day ${loc.day}: ${loc.name}`;
+                        L.marker([loc.lat, loc.lng], { icon: icons[loc.type] || icons.attraction })
+                            .bindPopup(`<strong>${label}</strong>`)
+                            .addTo(map);
+                    });
+
+                    // Force invalidation to fix grey boxes
+                    setTimeout(() => { map.invalidateSize(); }, 500);
+                    
+                    mapObserver.unobserve(mapSection);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        mapObserver.observe(mapSection);
+    } else {
+        console.warn('Map section or container not found in DOM.');
+    }
 });
