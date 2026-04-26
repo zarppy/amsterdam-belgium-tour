@@ -66,8 +66,9 @@ document.addEventListener('DOMContentLoaded', () => {
         { day: 7, name: "Bruges Market", lat: 51.2087, lng: 3.2241, type: "hotel" },
         
         { day: 8, name: "Rozenhoedkaai", lat: 51.2075, lng: 3.2268, type: "attraction" },
-        { day: 8, name: "Antwerp Station", lat: 51.2172, lng: 4.4211, type: "attraction" },
+        { day: 8, name: "Antwerp City Center", lat: 51.2194, lng: 4.4025, type: "hotel" },
         
+        { day: 9, name: "Antwerp Station", lat: 51.2172, lng: 4.4211, type: "attraction" },
         { day: 9, name: "Fabel Friet", lat: 52.3697, 4.8845, type: "food" },
         { day: 9, name: "Van Stapele Cookies", lat: 52.3688, 4.8899, type: "food" },
         { day: 9, name: "Harry's Pasta", lat: 52.3719, 4.9004, type: "food" },

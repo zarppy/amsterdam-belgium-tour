@@ -122,8 +122,8 @@ The new site will adopt the **Shanghai visual format** as the primary structure,
 | **5** | 3 Oct (Sat) | Brussels Hub | 06:30 Sunrise Atomium. 19:30 Mont des Arts Silhouette. |
 | **6** | 4 Oct (Sun) | Meuse Valley | 09:00 Namur Citadel. 14:00 Dinant Icons. 20:00 Night reflections. |
 | **7** | 5 Oct (Mon) | Ghent/Bruges | 08:30 Ghent (Graslei). 20:30 Bruges Night Fairytale. |
-| **8** | 6 Oct (Tue) | Bruges/Antwerp | 05:45 Dawn Rozenhoedkaai. 11:00 Antwerp Station. 17:00 Drive to AMS. |
-| **9** | 7 Oct (Wed) | AMS Final | 10:00 Jordaan boutiques. 19:00 **Return Car (AMS)**. Stay AMS. |
+| **8** | 6 Oct (Tue) | Bruges/Antwerp | 05:45 Dawn Rozenhoedkaai. 11:00 Antwerp Depth (MAS/Rubens). Stay Antwerp. |
+| **9** | 7 Oct (Wed) | Antwerp/AMS | 09:00 Antwerp Station. 14:00 **Drive to AMS**. 19:00 Return Car. Stay AMS. |
 | **10** | 8 Oct (Thu) | Departure | 09:00 Breakfast. 10:00 Schiphol. **12:00 Midday Flight MEL**. |
 
 ---
